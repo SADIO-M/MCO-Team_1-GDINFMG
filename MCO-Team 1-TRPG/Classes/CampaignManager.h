@@ -22,7 +22,9 @@ class CampaignManager {
 		string UpdateRow(string id, string columnName, string newValue);
 		string ViewAll();
 		string DeleteFrom(string id);
+
 		string GetCampaignFromGM();
+		string CheckPlayerCampaign(string id);
 	private: 
 		void PrintInputs();
 };

@@ -90,6 +90,23 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 					<< left << setw(31) << res->getString("CampaignName") << endl;
 			}
 		}
+
+		else if (input == "6") { // DISPLAY PLAYER CAMPAIGNS
+			string playerID;
+
+			cout << "\n\nDISPLAY PLAYER CAMPAIGNS\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+
+			ResultSet* res
+				= statement->executeQuery(CheckPlayerCampaign(playerID));
+
+			//Loop through the result set and display data
+			int count = 0;
+			cout << "CAMPAIGN NAME\n";
+			while (res->next()) {
+				cout << res->getString("CampaignName") << endl;
+			}
+		}
 	}
 }
 
@@ -135,6 +152,13 @@ string CampaignManager::GetCampaignFromGM()
 	return query;
 }
 
+string CampaignManager::CheckPlayerCampaign(string id)
+{
+	string query = "SELECT C.CampaignName\nFROM Campaign AS C\nJOIN PlayerCampaign PC ON C.CampaignID = PC.CampaignID\nWhere PC.PlayerID = " + id;
+
+	return query;
+}
+
 // HELPER FUNCTIONS ----------------------------------------------------------------
 
 void CampaignManager::PrintInputs()
@@ -142,6 +166,7 @@ void CampaignManager::PrintInputs()
 	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
 		<< "\n    [4] - Delete Record\n    [5] - List Owned Campaigns"
+		<< "\n    [6] - List a Player's Campaigns"
 		<< "\n    [0] - EXIT";
 }
 
