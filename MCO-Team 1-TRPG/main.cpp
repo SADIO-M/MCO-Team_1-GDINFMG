@@ -41,6 +41,7 @@ int main()
 
     char input = '-';
     cout << "Press 1 to show all the data in the artists table\n";
+    cout << "Press 2 to say hi\n";
     //cout << "Press 2 to insert data into the inventory table\n";
     cout << "Press 0 to close program\n";
     cin >> input;
@@ -86,6 +87,7 @@ int main()
 
         delete res;
         } if (input == '2') {
+            cout << "Hi!\n";
             //pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
             //string nameInput;
             //int itemQuantity;
@@ -100,9 +102,10 @@ int main()
             //delete pstmt;
         }
 
-        //cout << "\n\nPress 1 to show all the data in the inventory table\n";
+        cout << "\n\nPress 1 to show all the data in the artists table\n";
+        cout << "Press 2 to say hi\n";
         //cout << "Press 2 to insert data into the inventory table\n";
-        //cout << "Press 0 to close program\n";
+        cout << "Press 0 to close program\n";
         cin >> input;
     }
 
