@@ -45,7 +45,7 @@ int main()
     statement = connection->createStatement();
 
     string input = "-";
-    while (input != "EXIT"){
+    while (input != "0"){
         cout << "\nPress 1 to view campaign manager\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
@@ -54,7 +54,7 @@ int main()
             Campaigns.Update(connection, statement);
         }
 
-        else if (input == "EXIT" || input == "exit") {
+        else if (input == "0") {
             break;
         }
 

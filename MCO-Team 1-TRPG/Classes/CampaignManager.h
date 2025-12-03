@@ -21,8 +21,8 @@ class CampaignManager {
 		string AddRow(string id, string name, string ruleSystemID);
 		string UpdateRow(string id, string columnName, string newValue);
 		string ViewAll();
-		//string DeleteFrom();
-		//string GetCampaignFromGM(int GamemasterID);
+		string DeleteFrom(string id);
+		string GetCampaignFromGM();
 	private: 
 		void PrintInputs();
 };

@@ -60,6 +60,32 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 					<< left << setw(31) << res->getString("CampaignName") << endl;
 			}
 		}
+		else if (input == "4") {
+			string CampaignId;
+
+			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> CampaignId;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(DeleteFrom(CampaignId));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+		else if (input == "5") {
+			ResultSet* res
+				= statement->executeQuery(GetCampaignFromGM());
+
+			//Loop through the result set and display data
+			int count = 0;
+			cout << "CAMPAIGN ID | CAMPAIGN NAME\n";
+			while (res->next()) {
+				cout << res->getString("CampaignID") << "         "
+					<< left << setw(31) << res->getString("CampaignName") << endl;
+			}
+		}
 	}
 }
 
@@ -91,11 +117,25 @@ string CampaignManager::ViewAll()
 	return query;
 }
 
+string CampaignManager::DeleteFrom(string id)
+{
+	string query = "DELETE FROM Campaign\nWHERE CampaignID = " + id;
+
+	return query;
+}
+
+string CampaignManager::GetCampaignFromGM()
+{
+	string query = "SELECT C.CampaignID, C.CampaignName\nFROM Campaign AS C\nWHERE C.GameMasterID = " + GameMasterID;
+
+	return query;
+}
+
 void CampaignManager::PrintInputs()
 {
 	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
-		<< "\n    [4] - Delete Record\n    [4] - List Campaigns From GM"
+		<< "\n    [4] - Delete Record\n    [5] - List Campaigns From GM"
 		<< "\n    [0] - EXIT";
 }
 
