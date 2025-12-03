@@ -1,4 +1,3 @@
-// SAMPLE CODE IN MAIN
 #include <stdlib.h>
 #include <iostream>
 
@@ -8,26 +7,29 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 
-//for demonstration only. never save your password in the code!
+#include "Classes/CampaignManager.h"
+
 const string server = "tcp://127.0.0.1:3306";
 const string username = "root";
-const string password = "HuW@yD0SQL?";
+//const string password = "HuW@yD0SQL?";
 
 int main()
 {
     sql::Driver* driver;
-    sql::Connection* con;
-    sql::Statement* stmt;
-    sql::PreparedStatement* pstmt;
+    sql::Connection* connection;
+    sql::Statement* statement;
+    sql::PreparedStatement* prepStatement;
 
-    //string password;
-    //cout << "Enter server password: ";
-    //cin >> password;
+    /*string password;
+    cout << "Enter server password: ";
+    cin >> password;*/
+
+    string password = "GOLDeater!1231";
 
     try
     {
         driver = get_driver_instance();
-        con = driver->connect(server, username, password);
+        connection = driver->connect(server, username, password);
     }
     catch (sql::SQLException e)
     {
@@ -36,82 +38,34 @@ int main()
         exit(1);
     }
 
-    //please create database "quickstartdb" ahead of time
-    con->setSchema("concert");
+    // INITIALIZATION
+    connection->setSchema("CampaignManager");
+    CampaignManager Campaigns;
 
-    char input = '-';
-    cout << "Press 1 to show all the data in the artists table\n";
-    cout << "Press 2 to say hi\n";
-    //cout << "Press 2 to insert data into the inventory table\n";
-    cout << "Press 0 to close program\n";
-    cin >> input;
+    statement = connection->createStatement();
 
-    stmt = con->createStatement();
-
-    while (input != '0'){
-        if (input == '1') {
-        string selectDataSQL = "SELECT name FROM artists";
-
-        sql::ResultSet* res
-            = stmt->executeQuery(selectDataSQL);
-
-        // Loop through the result set and display data
-        int count = 0;
-        while (res->next()) {
-            cout << " Artist Name " << ++count << ": "
-                << res->getString("name") << endl;
-        }
-        //stmt = con->createStatement();
-        //stmt->execute("DROP TABLE IF EXISTS inventory");
-        //cout << "Finished dropping table (if existed)" << endl;
-        //stmt->execute("CREATE TABLE inventory (id serial PRIMARY KEY, name VARCHAR(50), quantity INTEGER);");
-        //cout << "Finished creating table" << endl;
-        //delete stmt;
-        //
-        //pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
-        //pstmt->setString(1, "mango");
-        //pstmt->setInt(2, 150);
-        //pstmt->execute();
-        //cout << "One row inserted." << endl;
-        //
-        //pstmt->setString(1, "banana");
-        //pstmt->setInt(2, 154);
-        //pstmt->execute();
-        //cout << "One row inserted." << endl;
-        //
-        //pstmt->setString(1, "dragonfruit");
-        //pstmt->setInt(2, 100);
-        //pstmt->execute();
-        //cout << "One row inserted." << endl;
-        //
-
-        delete res;
-        } if (input == '2') {
-            cout << "Hi!\n";
-            //pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
-            //string nameInput;
-            //int itemQuantity;
-            //cout << "\n\nInput name of item that you want to insert: ";
-            //cin >> nameInput;
-            //cout << "Input quantity of item: ";
-            //cin >> itemQuantity;
-            //pstmt->setString(1, nameInput);
-            //pstmt->setInt(2, itemQuantity);
-            //pstmt->execute();
-            //cout << "One row inserted." << endl;
-            //delete pstmt;
-        }
-
-        cout << "\n\nPress 1 to show all the data in the artists table\n";
-        cout << "Press 2 to say hi\n";
-        //cout << "Press 2 to insert data into the inventory table\n";
-        cout << "Press 0 to close program\n";
+    string input = "-";
+    while (input != "EXIT"){
+        cout << "\nPress 1 to view campaign manager\n";
+        cout << "[ ENTER INPUT ] : ";
         cin >> input;
+
+        if (input == "1") {
+            Campaigns.Update(connection, statement);
+        }
+
+        else if (input == "EXIT" || input == "exit") {
+            break;
+        }
+
+        else {
+            cout << "\nCommand not recoginized! Try again.\n";
+        }
     }
 
     cout << "\n\nApplication closed. Thank you!\n";
-    delete stmt;
-    delete con;
+    delete statement;
+    delete connection;
     system("pause");
     return 0;
 }
