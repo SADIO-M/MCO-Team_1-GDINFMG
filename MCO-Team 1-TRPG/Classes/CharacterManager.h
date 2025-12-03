@@ -23,11 +23,6 @@ public:
 	string UpdateRow(string type, string id, string columnName, string newValue);
 	string ViewAll();
 
-	string AddToCampaign(string id, string campaignID);
-	string RemoveFromCampaign(string id, string campaignID);
-	string AddToSession(string id, string sessionID);
-	string RemoveFromSession(string id, string sessionID);
-
 	string DeleteFrom(string type, string id);
 private:
 	void PrintInputs();

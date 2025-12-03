@@ -114,71 +114,6 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
-
-		else if (input == "5") {
-			string playerID, campaignID;
-			cout << "\n\nADDING PLAYER TO CAMPAIGN\n    > ENTER [ PLAYER ID ] : ";
-			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
-			cin >> campaignID;
-
-			try {
-				ResultSet* res
-					= statement->executeQuery(AddToCampaign(playerID, campaignID));
-			}
-			catch (sql::SQLException e) {
-				cout << "\nFeedback: \n" << e.what() << endl;
-			}
-		}
-
-		else if (input == "6") {
-			string playerID, campaignID;
-			cout << "\n\nREMOVING PLAYER FROM CAMPAIGN\n    > ENTER [ PLAYER ID ] : ";
-			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
-			cin >> campaignID;
-
-			try {
-				ResultSet* res
-					= statement->executeQuery(RemoveFromCampaign(playerID, campaignID));
-			}
-			catch (sql::SQLException e) {
-				cout << "\nFeedback: \n" << e.what() << endl;
-			}
-		}
-
-		else if (input == "7") {
-			string playerID, sessionID;
-			cout << "\n\nADDING PLAYER TO SESSION\n    > ENTER [ PLAYER ID ] : ";
-			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
-			cin >> sessionID;
-
-			try {
-				ResultSet* res
-					= statement->executeQuery(AddToSession(playerID, sessionID));
-			}
-			catch (sql::SQLException e) {
-				cout << "\nFeedback: \n" << e.what() << endl;
-			}
-		}
-
-		else if (input == "8") {
-			string playerID, sessionID;
-			cout << "\n\nREMOVING PLAYER FROM SESSION\n    > ENTER [ PLAYER ID ] : ";
-			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
-			cin >> sessionID;
-
-			try {
-				ResultSet* res
-					= statement->executeQuery(RemoveFromSession(playerID, sessionID));
-			}
-			catch (sql::SQLException e) {
-				cout << "\nFeedback: \n" << e.what() << endl;
-			}
-		}
-
 	}
 }
 
@@ -236,46 +171,6 @@ string CharacterManager::ViewAll() {
 	return query;
 }
 
-string CharacterManager::AddToCampaign(string id, string campaignID)
-{
-	string query = "INSERT INTO PlayerCampaign (PlayerID, CampaignID) VALUES";
-	string query2 = "(" + id + ", " + campaignID + ")";
-
-	string fullQuery = query + query2;
-
-	return fullQuery;
-}
-
-string CharacterManager::RemoveFromCampaign(string id, string campaignID)
-{
-	string query = "DELETE FROM PlayerCampaign";
-	string query2 = "\nWHERE PlayerID = " + id + " AND CampaignID = " + campaignID;
-
-	string fullQuery = query + query2;
-
-	return fullQuery;
-}
-
-string CharacterManager::AddToSession(string id, string sessionID)
-{
-	string query = "INSERT INTO PlayerSessionAttended (PlayerID, SessionID) VALUES";
-	string query2 = "(" + id + ", " + sessionID + ")";
-
-	string fullQuery = query + query2;
-
-	return fullQuery;
-}
-
-string CharacterManager::RemoveFromSession(string id, string sessionID)
-{
-	string query = "DELETE FROM PlayerSessionAttended";
-	string query2 = "\nWHERE PlayerID = " + id + " AND SessionID = " + sessionID;
-
-	string fullQuery = query + query2;
-
-	return fullQuery;
-}
-
 string CharacterManager::DeleteFrom(string type, string id) {
 
 	string query;
@@ -293,8 +188,8 @@ string CharacterManager::DeleteFrom(string type, string id) {
 
 void CharacterManager::PrintInputs()
 {
-	cout << "\n|| MANAGE CHARACTERS AND PLAYERS ||\n    [1] - Add Record"
-		<< "\n    [2] - Update Record\n    [3] - View All Records"
+	cout << "\n|| MANAGE CHARACTERS AND PLAYERS ||\n	    CHARACTER MANAGEMENT\n    [1] - Add Record"
+		<< "\n    [2] - Update Record\n    [3] - View All Character Records"
 		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
 		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"
 		<< "\n    [7] - Add Player to Session\n    [8] - Remove Player from Session"
