@@ -149,6 +149,26 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
+
+		else if (input == "5") {
+			string CharId;
+
+			cout << "\n\nFIND PLAYER BACKGROUND\n    > ENTER [ CHARACTER ID ] : ";
+			cin >> CharId;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(GetBackground(CharId));
+
+				while (res->next()) {
+					cout << "Name: "<< res->getString("Name") << "\nBackstory: " << res->getString("Backstory") 
+						<< "\nPersonality: " << res->getString("Personality") << "\nAlignment: " << res->getString("Alignment") << endl;
+				}
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
 	}
 }
 
@@ -219,14 +239,23 @@ string CharacterManager::DeleteFrom(string type, string id) {
 	return query;
 }
 
+string CharacterManager::GetBackground(string id)
+{
+	string query = "SELECT CONCAT(C.first_name, ' ', C.last_name) AS 'Name', B.Backstory, B.Personality, B.Alignment\nFROM Characters C JOIN CharacterDetail CD ON CD.CharID = C.CharID JOIN Background B ON CD.BackgroundID = B.BackgroundID";
+	string query2 = "\nWHERE  CD.CharID = " + id;
+
+	string fullQuery = query + query2;
+
+	return fullQuery;
+}
+
 // HELPER FUNCTIONS ----------------------------------------------------------------
 
 void CharacterManager::PrintInputs()
 {
 	cout << "\n|| MANAGE CHARACTERS AND PLAYERS ||\n	    CHARACTER MANAGEMENT\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Character Records"
-		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
-		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"
-		<< "\n    [7] - Add Player to Session\n    [8] - Remove Player from Session"
+		<< "\n    [4] - Delete Record\n	    OTHER"
+		<< "\n    [5] - Get Player Background"
 		<< "\n    [0] - EXIT";
 }

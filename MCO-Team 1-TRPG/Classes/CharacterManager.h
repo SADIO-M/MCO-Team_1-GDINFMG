@@ -22,8 +22,9 @@ public:
 	string AddRowNPC(string id, string type);
 	string UpdateRow(string type, string id, string columnName, string newValue);
 	string ViewAll();
-
 	string DeleteFrom(string type, string id);
+
+	string GetBackground(string id);
 private:
 	void PrintInputs();
 };
