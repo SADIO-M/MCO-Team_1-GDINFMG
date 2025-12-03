@@ -43,6 +43,7 @@ int main()
     // INITIALIZATION
     connection->setSchema("CampaignManager");
     CampaignManager Campaigns;
+    SessionManager Sessions;
 
     statement = connection->createStatement();
 
@@ -58,7 +59,7 @@ int main()
         }
 
         if (input == "2") {
-            cout << "INSERT SESSION MANAGER HERE";
+            Sessions.Update(connection, statement);
         }
 
         else if (input == "0") {
