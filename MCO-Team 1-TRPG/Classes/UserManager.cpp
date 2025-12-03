@@ -11,19 +11,19 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 		cin >> input;
 
 		if (input == "1") { // ADD RECORD
-			string CampaignId, CampaignName, RuleSystem;
+			string playerId, firstName, lastName;
 
-			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
-			cin >> CampaignId;
+			cout << "\n\nENTER NEW PLAYER DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> playerId;
 			cin.ignore();
-			cout << "\n    > ENTER [ CAMPAIGN NAME ] (Note: Must format as '<name>') : ";
-			getline(cin, CampaignName);
-			cout << "\n    > ENTER [ RULE SYSTEM ] : ";
-			cin >> RuleSystem;
+			cout << "\n    > ENTER [ PLAYER NAME ] (Note: Must format as '<name>') : ";
+			getline(cin, firstName);
+			cout << "\n    > ENTER [ PLAYER NAME ] (Note: Must format as '<name>') : ";
+			getline(cin, lastName);
 
 			try {
 				ResultSet* res
-					= statement->executeQuery(AddRow(CampaignId, CampaignName, RuleSystem));
+					= statement->executeQuery(AddRow(playerId, firstName, lastName));
 			}
 			catch (sql::SQLException e) {
 				cout << "\nFeedback: \n" << e.what() << endl;
