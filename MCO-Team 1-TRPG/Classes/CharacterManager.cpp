@@ -115,6 +115,70 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 			}
 		}
 
+		else if (input == "5") {
+			string playerID, campaignID;
+			cout << "\n\nADDING PLAYER TO CAMPAIGN\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> campaignID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(AddToCampaign(playerID, campaignID));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "6") {
+			string playerID, campaignID;
+			cout << "\n\nREMOVING PLAYER FROM CAMPAIGN\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> campaignID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(RemoveFromCampaign(playerID, campaignID));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "7") {
+			string playerID, sessionID;
+			cout << "\n\nADDING PLAYER TO SESSION\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> sessionID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(AddToSession(playerID, sessionID));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "8") {
+			string playerID, sessionID;
+			cout << "\n\nREMOVING PLAYER FROM SESSION\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> sessionID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(RemoveFromSession(playerID, sessionID));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
 	}
 }
 
@@ -229,7 +293,7 @@ string CharacterManager::DeleteFrom(string type, string id) {
 
 void CharacterManager::PrintInputs()
 {
-	cout << "\n|| MANAGE CHARACTERS ||\n    [1] - Add Record"
+	cout << "\n|| MANAGE CHARACTERS AND PLAYERS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
 		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
 		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"
