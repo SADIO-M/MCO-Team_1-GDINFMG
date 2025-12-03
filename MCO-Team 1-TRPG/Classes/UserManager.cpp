@@ -10,9 +10,74 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 		cout << "\n\n[ ENTER INPUT ] : ";
 		cin >> input;
 
+		if (input == "1") { // ADD RECORD
+			string CampaignId, CampaignName, RuleSystem;
 
+			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cin >> CampaignId;
+			cin.ignore();
+			cout << "\n    > ENTER [ CAMPAIGN NAME ] (Note: Must format as '<name>') : ";
+			getline(cin, CampaignName);
+			cout << "\n    > ENTER [ RULE SYSTEM ] : ";
+			cin >> RuleSystem;
 
-		if (input == "5") {
+			try {
+				ResultSet* res
+					= statement->executeQuery(AddRow(CampaignId, CampaignName, RuleSystem));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "2") { // UPDATE RECORD
+			string playerID, columnName, newValue;
+
+			cout << "\n\nENTER NEW PLAYER DETAILS\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+			cin.ignore();
+			cout << "\n    > ENTER [ DATA COLUMN NAME ] (PlayerID, first_name, last_name) : ";
+			getline(cin, columnName);
+			cout << "\n    > ENTER [ NEW VALUE ] : ";
+			getline(cin, newValue);
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(UpdateRow(playerID, columnName, newValue));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "3") { // DISPLAY ALL PLAYERS
+			ResultSet* res
+				= statement->executeQuery(ViewAll());
+
+			int count = 0;
+			cout << "PLAYER ID | NAME\n";
+			while (res->next()) {
+				cout << res->getString("PlayerID") << "         "
+					<< left << setw(31) << res->getString("Name") << endl;
+			}
+		}
+
+		else if (input == "4") { // DELETE RECORD
+			string playerID;
+
+			cout << "\n\nDELETE PLAYER RECORD\n    > ENTER [ PLAYER ID ] : ";
+			cin >> playerID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(DeleteFrom(playerID));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
+		else if (input == "5") {
 			string playerID, campaignID;
 			cout << "\n\nADDING PLAYER TO CAMPAIGN\n    > ENTER [ PLAYER ID ] : ";
 			cin >> playerID;

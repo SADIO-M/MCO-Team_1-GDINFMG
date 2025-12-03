@@ -75,6 +75,41 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 			}
 		} 
 
+		else if (input == "2") {
+			string characterID, columnName, newValue;
+
+			input = "";
+			cout << "\n    [1] - Update Player-Owned Character Info\n    [2] - Update NPC Info\n    [3] - Update Default Character Info\n    > ENTER [ INPUT ] : ";
+			cin >> input;
+
+			cout << "\n\nENTER NEW CHARACTER DETAILS\n    > ENTER [ CHARACTER ID ] : ";
+			cin >> characterID;
+			cin.ignore();
+			cout << "\n    > ENTER [ DATA COLUMN NAME ]";
+
+			if (input == "1") {
+				cout << " (DeathSavesSuccess, DeathSavesFails, PlayerID) : ";
+			}
+			else if (input == "2") {
+				cout << " (`type`) : ";
+			}
+			else if (input == "3") {
+				cout << " (first_name, last_name, AttackID, Initiative) : ";
+			}
+
+			getline(cin, columnName);
+			cout << "\n    > ENTER [ NEW VALUE ] : ";
+			getline(cin, newValue);
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(UpdateRow(input, characterID, columnName, newValue));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
+
 		else if (input == "3") {
 			ResultSet* res
 				= statement->executeQuery(ViewAll());
