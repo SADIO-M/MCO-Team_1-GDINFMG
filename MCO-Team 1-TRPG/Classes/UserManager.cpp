@@ -221,7 +221,7 @@ string UserManager::RemoveFromSession(string id, string sessionID)
 
 void UserManager::PrintInputs()
 {
-	cout << "\n|| MANAGE PLAYERS ||\n	    CHARACTER MANAGEMENT\n    [1] - Add Record"
+	cout << "\n|| MANAGE PLAYERS ||\n	    PLAYER MANAGEMENT\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Player Records"
 		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
 		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"

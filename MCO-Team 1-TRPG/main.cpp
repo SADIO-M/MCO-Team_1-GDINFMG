@@ -10,6 +10,7 @@ using namespace std;
 #include "Classes/CampaignManager.h"
 #include "Classes/SessionManager.h"
 #include "Classes/CharacterManager.h"
+#include "Classes/UserManager.h"
 
 const string server = "tcp://127.0.0.1:3306";
 const string username = "root";
@@ -45,14 +46,16 @@ int main()
     CampaignManager Campaigns;
     SessionManager Sessions;
     CharacterManager Characters;
+    UserManager Users;
 
     statement = connection->createStatement();
 
     string input = "-";
     while (input != "0"){
-        cout << "\nPress 1 to view campaign manager";
-        cout << "\nPress 2 to view session manager";
-        cout << "\nPress 3 to view character manager\n\n";
+        cout << "\nPress 1 to view Campaign Manager";
+        cout << "\nPress 2 to view Session Manager";
+        cout << "\nPress 3 to view Character Manager";
+        cout << "\nPress 4 to view User Manager\n\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
 
@@ -66,6 +69,10 @@ int main()
 
         if (input == "3") {
             Characters.Update(connection, statement);
+        }
+
+        if (input == "4") {
+            Users.Update(connection, statement);
         }
 
         else if (input == "0") {

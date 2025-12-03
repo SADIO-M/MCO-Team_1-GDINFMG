@@ -138,12 +138,14 @@
     <ClCompile Include="Classes\CampaignManager.cpp" />
     <ClCompile Include="Classes\CharacterManager.cpp" />
     <ClCompile Include="Classes\SessionManager.cpp" />
+    <ClCompile Include="Classes\UserManager.cpp" />
     <ClCompile Include="main.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Classes\CampaignManager.h" />
     <ClInclude Include="Classes\CharacterManager.h" />
     <ClInclude Include="Classes\SessionManager.h" />
+    <ClInclude Include="Classes\UserManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
