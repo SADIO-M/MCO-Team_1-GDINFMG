@@ -37,11 +37,11 @@ int main()
     }
 
     //please create database "quickstartdb" ahead of time
-    con->setSchema("sampledatabase");
+    con->setSchema("concert");
 
     char input = '-';
-    cout << "Press 1 to show all the data in the inventory table\n";
-    cout << "Press 2 to insert data into the inventory table\n";
+    cout << "Press 1 to show all the data in the artists table\n";
+    //cout << "Press 2 to insert data into the inventory table\n";
     cout << "Press 0 to close program\n";
     cin >> input;
 
@@ -49,7 +49,7 @@ int main()
 
     while (input != '0'){
         if (input == '1') {
-        string selectDataSQL = "SELECT * FROM inventory";
+        string selectDataSQL = "SELECT name FROM artists";
 
         sql::ResultSet* res
             = stmt->executeQuery(selectDataSQL);
@@ -57,7 +57,7 @@ int main()
         // Loop through the result set and display data
         int count = 0;
         while (res->next()) {
-            cout << " Item Name " << ++count << ": "
+            cout << " Artist Name " << ++count << ": "
                 << res->getString("name") << endl;
         }
         //stmt = con->createStatement();
@@ -86,23 +86,23 @@ int main()
 
         delete res;
         } if (input == '2') {
-            pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
-            string nameInput;
-            int itemQuantity;
-            cout << "\n\nInput name of item that you want to insert: ";
-            cin >> nameInput;
-            cout << "Input quantity of item: ";
-            cin >> itemQuantity;
-            pstmt->setString(1, nameInput);
-            pstmt->setInt(2, itemQuantity);
-            pstmt->execute();
-            cout << "One row inserted." << endl;
-            delete pstmt;
+            //pstmt = con->prepareStatement("INSERT INTO inventory(name, quantity) VALUES(?,?)");
+            //string nameInput;
+            //int itemQuantity;
+            //cout << "\n\nInput name of item that you want to insert: ";
+            //cin >> nameInput;
+            //cout << "Input quantity of item: ";
+            //cin >> itemQuantity;
+            //pstmt->setString(1, nameInput);
+            //pstmt->setInt(2, itemQuantity);
+            //pstmt->execute();
+            //cout << "One row inserted." << endl;
+            //delete pstmt;
         }
 
-        cout << "\n\nPress 1 to show all the data in the inventory table\n";
-        cout << "Press 2 to insert data into the inventory table\n";
-        cout << "Press 0 to close program\n";
+        //cout << "\n\nPress 1 to show all the data in the inventory table\n";
+        //cout << "Press 2 to insert data into the inventory table\n";
+        //cout << "Press 0 to close program\n";
         cin >> input;
     }
 
