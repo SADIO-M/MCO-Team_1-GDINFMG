@@ -269,7 +269,7 @@ string CharacterManager::AddToSession(string id, string sessionID)
 string CharacterManager::RemoveFromSession(string id, string sessionID)
 {
 	string query = "DELETE FROM PlayerSessionAttended";
-	string query2 = "\nWHERE PlayerID = " + id + " AND CampaignID = " + sessionID;
+	string query2 = "\nWHERE PlayerID = " + id + " AND SessionID = " + sessionID;
 
 	string fullQuery = query + query2;
 
