@@ -9,6 +9,7 @@ using namespace std;
 
 #include "Classes/CampaignManager.h"
 #include "Classes/SessionManager.h"
+#include "Classes/CharacterManager.h"
 
 const string server = "tcp://127.0.0.1:3306";
 const string username = "root";

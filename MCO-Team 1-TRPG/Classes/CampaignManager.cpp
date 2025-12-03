@@ -10,7 +10,7 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 		cout << "\n\n[ ENTER INPUT ] : ";
 		cin >> input;
 
-		if (input == "1") {
+		if (input == "1") { // ADD RECORD
 			string CampaignId, CampaignName, RuleSystem;
 
 			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
@@ -29,7 +29,8 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
-		if (input == "2") {
+
+		else if (input == "2") { // UPDATE RECORD
 			string CampaignId, columnName, newValue;
 
 			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
@@ -48,7 +49,8 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
-		else if (input == "3") {
+
+		else if (input == "3") { // DISPLAY ALL CAMPAIGNS
 			ResultSet* res
 				= statement->executeQuery(ViewAll());
 
@@ -60,10 +62,11 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 					<< left << setw(31) << res->getString("CampaignName") << endl;
 			}
 		}
-		else if (input == "4") {
+
+		else if (input == "4") { // DELETE RECORD
 			string CampaignId;
 
-			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cout << "\n\nDELETE CAMPAIGN RECORD\n    > ENTER [ CAMPAIGN ID ] : ";
 			cin >> CampaignId;
 
 			try {
@@ -74,7 +77,8 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
-		else if (input == "5") {
+
+		else if (input == "5") { // DISPLAY OWNED CAMPAIGNS
 			ResultSet* res
 				= statement->executeQuery(GetCampaignFromGM());
 
@@ -137,7 +141,7 @@ void CampaignManager::PrintInputs()
 {
 	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
-		<< "\n    [4] - Delete Record\n    [5] - List Campaigns From GM"
+		<< "\n    [4] - Delete Record\n    [5] - List Owned Campaigns"
 		<< "\n    [0] - EXIT";
 }
 
