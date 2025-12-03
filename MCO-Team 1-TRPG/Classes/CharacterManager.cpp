@@ -174,22 +174,42 @@ string CharacterManager::ViewAll() {
 
 string CharacterManager::AddToCampaign(string id, string campaignID)
 {
-	return string();
+	string query = "INSERT INTO PlayerCampaign (PlayerID, CampaignID) VALUES";
+	string query2 = "(" + id + ", " + campaignID + ")";
+
+	string fullQuery = query + query2;
+
+	return fullQuery;
 }
 
 string CharacterManager::RemoveFromCampaign(string id, string campaignID)
 {
-	return string();
+	string query = "DELETE FROM PlayerCampaign";
+	string query2 = "\nWHERE PlayerID = " + id + " AND CampaignID = " + campaignID;
+
+	string fullQuery = query + query2;
+
+	return fullQuery;
 }
 
 string CharacterManager::AddToSession(string id, string sessionID)
 {
-	return string();
+	string query = "INSERT INTO PlayerSessionAttended (PlayerID, SessionID) VALUES";
+	string query2 = "(" + id + ", " + sessionID + ")";
+
+	string fullQuery = query + query2;
+
+	return fullQuery;
 }
 
 string CharacterManager::RemoveFromSession(string id, string sessionID)
 {
-	return string();
+	string query = "DELETE FROM PlayerSessionAttended";
+	string query2 = "\nWHERE PlayerID = " + id + " AND CampaignID = " + sessionID;
+
+	string fullQuery = query + query2;
+
+	return fullQuery;
 }
 
 string CharacterManager::DeleteFrom(string type, string id) {
