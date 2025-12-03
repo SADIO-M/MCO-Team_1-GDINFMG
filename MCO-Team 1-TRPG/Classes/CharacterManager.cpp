@@ -82,7 +82,7 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 			cout << "\n    [1] - Update Player-Owned Character Info\n    [2] - Update NPC Info\n    [3] - Update Default Character Info\n    > ENTER [ INPUT ] : ";
 			cin >> input;
 
-			cout << "\n\nENTER NEW CHARACTER DETAILS\n    > ENTER [ CHARACTER ID ] : ";
+			cout << "\n\nENTER NEW CHARACTER DETAILS\n > Note: All strings must be encased in single quotes.\n    > ENTER [ CHARACTER ID ] : ";
 			cin >> characterID;
 			cin.ignore();
 			cout << "\n    > ENTER [ DATA COLUMN NAME ]";

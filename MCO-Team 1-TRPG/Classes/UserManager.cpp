@@ -33,7 +33,7 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 		else if (input == "2") { // UPDATE RECORD
 			string playerID, columnName, newValue;
 
-			cout << "\n\nENTER NEW PLAYER DETAILS\n    > ENTER [ PLAYER ID ] : ";
+			cout << "\n\nENTER NEW PLAYER DETAILS\n > Note: All strings must be encased in single quotes.\n    > ENTER [ PLAYER ID ] : ";
 			cin >> playerID;
 			cin.ignore();
 			cout << "\n    > ENTER [ DATA COLUMN NAME ] (PlayerID, first_name, last_name) : ";

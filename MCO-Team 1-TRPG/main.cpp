@@ -78,10 +78,6 @@ int main()
         else if (input == "0") {
             break;
         }
-
-        else {
-            cout << "\nCommand not recoginized! Try again.\n";
-        }
     }
 
     cout << "\n\nApplication closed. Thank you!\n";

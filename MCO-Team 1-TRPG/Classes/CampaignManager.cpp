@@ -33,7 +33,7 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 		else if (input == "2") { // UPDATE RECORD
 			string CampaignId, columnName, newValue;
 
-			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cout << "\n\nENTER NEW CAMPAIGN DETAILS\n > Note: All strings must be encased in single quotes.\n    > ENTER [ CAMPAIGN ID ] : ";
 			cin >> CampaignId;
 			cin.ignore();
 			cout << "\n    > ENTER [ DATA COLUMN NAME ] (CampaignName, GameMasterID, RuleSystemID) : ";
