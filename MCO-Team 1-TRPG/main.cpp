@@ -21,11 +21,11 @@ int main()
     sql::Statement* statement;
     sql::PreparedStatement* prepStatement;
 
-    /*string password;
+    string password;
     cout << "Enter server password: ";
-    cin >> password;*/
+    cin >> password;
 
-    string password = "GOLDeater!1231";
+    //string password = "GOLDeater!1231";
 
     try
     {
