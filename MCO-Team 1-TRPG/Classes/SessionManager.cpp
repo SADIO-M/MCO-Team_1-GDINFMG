@@ -99,6 +99,25 @@ void SessionManager::Update(Connection* connection, Statement* statement)
 			}
 			else cout << "No Available Result Due To Campaign Not Having A Session Yet.\n";
 		}
+
+		else if (input == "6") {
+			string sessionID;
+
+			cout << "\n\nREVIEW SESSION\n    > ENTER [ SESSION ID ] : ";
+			cin >> sessionID;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(ReviewSession(sessionID));
+				
+				while (res->next()) {
+					cout << "Event: " << res->getString("Event") << endl;
+				}
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+		}
 	}
 }
 
@@ -158,6 +177,13 @@ string SessionManager::CheckRecent(string id) {
 	return query;
 }
 
+string SessionManager::ReviewSession(string sessionID)
+{
+	string query = "SELECT descriptions as Event\nFROM ImportantNarrativePoint\nWhere SessionID = " + sessionID;
+
+	return query;
+}
+
 // HELPER FUNCTIONS ----------------------------------------------------------------
 
 void SessionManager::PrintInputs()
@@ -165,6 +191,7 @@ void SessionManager::PrintInputs()
 	cout << "\n|| MANAGE SESSIONS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
 		<< "\n    [4] - Delete Record\n    [5] - View Most Recent Session From A Campaign"
+		<< "\n    [6] - Review Session\n"
 		<< "\n    [0] - EXIT";
 }
 

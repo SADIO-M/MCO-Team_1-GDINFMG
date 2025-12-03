@@ -23,7 +23,9 @@ public:
 	string ViewAll();
 	string DeleteFrom(string id);
 	void GetCampaign(Statement* statement);
+
 	string CheckRecent(string campaignID);
+	string ReviewSession(string sessionID);
 private:
 	void PrintInputs();
 };

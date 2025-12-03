@@ -54,7 +54,6 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 			ResultSet* res
 				= statement->executeQuery(ViewAll());
 
-			int count = 0;
 			cout << "PLAYER ID | NAME\n";
 			while (res->next()) {
 				cout << res->getString("PlayerID") << "         "
