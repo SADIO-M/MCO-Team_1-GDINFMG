@@ -28,7 +28,7 @@ public:
 	string AddToSession(string id, string sessionID);
 	string RemoveFromSession(string id, string sessionID);
 
-	string DeleteFrom(string id);
+	string DeleteFrom(string type, string id);
 private:
 	void PrintInputs();
 };

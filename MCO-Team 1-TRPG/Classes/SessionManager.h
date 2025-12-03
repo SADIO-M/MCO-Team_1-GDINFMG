@@ -25,5 +25,5 @@ public:
 	void GetCampaign(Statement* statement);
 	string CheckRecent(string campaignID);
 private:
-	/*void PrintInputs();*/
+	void PrintInputs();
 };

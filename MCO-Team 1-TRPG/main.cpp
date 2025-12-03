@@ -44,13 +44,15 @@ int main()
     connection->setSchema("CampaignManager");
     CampaignManager Campaigns;
     SessionManager Sessions;
+    CharacterManager Characters;
 
     statement = connection->createStatement();
 
     string input = "-";
     while (input != "0"){
-        cout << "\nPress 1 to view campaign manager\n";
-        cout << "\nPress 2 to view session manager\n";
+        cout << "\nPress 1 to view campaign manager";
+        cout << "\nPress 2 to view session manager";
+        cout << "\nPress 3 to view character manager\n\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
 
@@ -60,6 +62,10 @@ int main()
 
         if (input == "2") {
             Sessions.Update(connection, statement);
+        }
+
+        if (input == "3") {
+            Characters.Update(connection, statement);
         }
 
         else if (input == "0") {

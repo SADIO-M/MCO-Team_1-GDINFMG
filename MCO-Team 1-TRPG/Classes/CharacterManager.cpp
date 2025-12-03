@@ -33,7 +33,7 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 			}
 
 			input = "";
-			cout << "\n    [1] - This is a Player-Owned Character\n    [2] - This is a NPC";
+			cout << "\n    [1] - This is a Player-Owned Character\n    [2] - This is a NPC\n    > ENTER [ INPUT ] : ";
 			cin >> input;
 
 			if (input == "1") {
@@ -51,7 +51,67 @@ void CharacterManager::Update(Connection* connection, Statement* statement) {
 			}
 			else if (input == "2") {
 				string type;
-				cout << "\n\n    > ENTER [ PLAYER ID OF OWNER ] : ";
+				cout << "\n\n    ENEMY TYPE\n    > [1] - Enemy\n    > [2] - Friendly\n    > ENTER [ INPUT ] : ";
+				cin >> type;
+
+				if (type == "1") {
+					try {
+						ResultSet* res
+							= statement->executeQuery(AddRowNPC(CharacterID, "\'enemy\'"));
+					}
+					catch (sql::SQLException e) {
+						cout << "\nFeedback: \n" << e.what() << endl;
+					}
+				}
+				else if (type == "2") {
+					try {
+						ResultSet* res
+							= statement->executeQuery(AddRowNPC(CharacterID, "\'friendly\'"));
+					}
+					catch (sql::SQLException e) {
+						cout << "\nFeedback: \n" << e.what() << endl;
+					}
+				}
+			}
+		} 
+
+		else if (input == "3") {
+			ResultSet* res
+				= statement->executeQuery(ViewAll());
+
+			//Loop through the result set and display data
+			int count = 0;
+			cout << "CHARACTER ID | CHARACTER NAME\n";
+			while (res->next()) {
+				cout << res->getString("CharID") << "         "
+					<< left << setw(31) << res->getString("Name") << endl;
+			}
+		}
+
+		else if (input == "4") {
+			string CharId;
+
+			cout << "\n\nDELETE CHARACTER RECORD\n    > ENTER [ CHARACTER ID ] : ";
+			cin >> CharId;
+
+			input = "";
+			cout << "\n    [1] - This is a Player-Owned Character\n    [2] - This is a NPC\n    > ENTER [ INPUT ] : ";
+			cin >> input;
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(DeleteFrom(input, CharId));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
+			}
+
+			try {
+				ResultSet* res
+					= statement->executeQuery(DeleteFrom("0", CharId));
+			}
+			catch (sql::SQLException e) {
+				cout << "\nFeedback: \n" << e.what() << endl;
 			}
 		}
 
@@ -92,7 +152,7 @@ string CharacterManager::UpdateRow(string type, string id, string columnName, st
 		query = "UPDATE Characters";
 	}
 	else if (type == "2") {
-		query = "UPDATE Player";
+		query = "UPDATE PlayerCharacter";
 	}
 	else if (type == "3") {
 		query = "UPDATE NonPlayableCharacter";
@@ -107,7 +167,9 @@ string CharacterManager::UpdateRow(string type, string id, string columnName, st
 }
 
 string CharacterManager::ViewAll() {
+	string query = "SELECT CharID, CONCAT(first_name, ' ', last_name) AS 'Name'\nFROM Characters\nORDER BY 1;";
 
+	return query;
 }
 
 string CharacterManager::AddToCampaign(string id, string campaignID)
@@ -130,18 +192,27 @@ string CharacterManager::RemoveFromSession(string id, string sessionID)
 	return string();
 }
 
-string CharacterManager::DeleteFrom(string id) {
+string CharacterManager::DeleteFrom(string type, string id) {
 
+	string query;
+	if (type == "1")
+		query = "DELETE FROM PlayerCharacter\nWHERE CharID = " + id;
+	else if (type == "2")
+		query = "DELETE FROM NonPlayableCharacter\nWHERE CharID = " + id;
+	else if (type == "0")
+		query = "DELETE FROM Characters\nWHERE CharID = " + id;
+
+	return query;
 }
 
 // HELPER FUNCTIONS ----------------------------------------------------------------
 
 void CharacterManager::PrintInputs()
 {
-	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"
+	cout << "\n|| MANAGE CHARACTERS ||\n    [1] - Add Record"
 		<< "\n    [2] - Update Record\n    [3] - View All Records"
-		<< "\n    [4] - Delete Record\n	        CAMPAIGN/SESSION MANAGEMENT"
-		<< "\n    [4] -Add Player to Campaign\n    [5] - Remove Player from Campaign"
-		<< "\n    [4] -Add Player to Session\n    [5] - Remove Player from Session"
+		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
+		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"
+		<< "\n    [7] - Add Player to Session\n    [8] - Remove Player from Session"
 		<< "\n    [0] - EXIT";
 }
