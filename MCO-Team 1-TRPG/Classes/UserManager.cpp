@@ -112,7 +112,7 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 			string playerID, sessionID;
 			cout << "\n\nADDING PLAYER TO SESSION\n    > ENTER [ PLAYER ID ] : ";
 			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cout << "    > ENTER [ SESSION ID ] : ";
 			cin >> sessionID;
 
 			try {
@@ -128,7 +128,7 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 			string playerID, sessionID;
 			cout << "\n\nREMOVING PLAYER FROM SESSION\n    > ENTER [ PLAYER ID ] : ";
 			cin >> playerID;
-			cout << "    > ENTER [ CAMPAIGN ID ] : ";
+			cout << "    > ENTER [ SESSION ID ] : ";
 			cin >> sessionID;
 
 			try {
