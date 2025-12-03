@@ -131,6 +131,8 @@ string CampaignManager::GetCampaignFromGM()
 	return query;
 }
 
+// HELPER FUNCTIONS ----------------------------------------------------------------
+
 void CampaignManager::PrintInputs()
 {
 	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"

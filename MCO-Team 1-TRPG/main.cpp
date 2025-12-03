@@ -8,6 +8,7 @@
 using namespace std;
 
 #include "Classes/CampaignManager.h"
+#include "Classes/SessionManager.h"
 
 const string server = "tcp://127.0.0.1:3306";
 const string username = "root";
@@ -47,11 +48,16 @@ int main()
     string input = "-";
     while (input != "0"){
         cout << "\nPress 1 to view campaign manager\n";
+        cout << "\nPress 2 to view session manager\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
 
         if (input == "1") {
             Campaigns.Update(connection, statement);
+        }
+
+        if (input == "2") {
+            cout << "INSERT SESSION MANAGER HERE";
         }
 
         else if (input == "0") {
