@@ -1,5 +1,10 @@
 #include "CharacterManager.h"
 
+CharacterManager::CharacterManager(UserManager* user)
+{
+	this->user = user;
+}
+
 void CharacterManager::Update(Connection* connection, Statement* statement) {
 	string input = "-";
 	while (input != "0") {

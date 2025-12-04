@@ -18,6 +18,8 @@ class UserManager {
 public:
 	string UserID;
 
+	UserManager(string userID);
+
 	void Update(Connection* connection, Statement* statement);
 	string AddRow(string id, string firstName, string lastName);
 	string UpdateRow(string id, string columnName, string newValue);

@@ -1,5 +1,10 @@
 #include "UserManager.h"
 
+UserManager::UserManager(string userID)
+{
+	this->UserID = userID;
+}
+
 void UserManager::Update(Connection* connection, Statement* statement) {
 
 	string input = "-";

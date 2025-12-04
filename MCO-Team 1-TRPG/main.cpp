@@ -43,10 +43,15 @@ int main()
 
     // INITIALIZATION
     connection->setSchema("CampaignManager");
-    CampaignManager Campaigns;
-    SessionManager Sessions;
-    CharacterManager Characters;
-    UserManager Users;
+
+    string userID;
+    cout << "\nEnter User ID: ";
+    cin >> userID;
+
+    UserManager Users(userID);
+    CampaignManager Campaigns(&Users);
+    SessionManager Sessions(&Users);
+    CharacterManager Characters(&Users);
 
     statement = connection->createStatement();
 

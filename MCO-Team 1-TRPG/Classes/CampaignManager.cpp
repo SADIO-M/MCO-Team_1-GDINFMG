@@ -1,5 +1,12 @@
 #include "CampaignManager.h"
 
+CampaignManager::CampaignManager(){}
+
+CampaignManager::CampaignManager(UserManager* user)
+{
+	this->user = user;
+}
+
 void CampaignManager::Update(Connection* connection, Statement* statement)
 {
 	string input = "-";
@@ -113,7 +120,7 @@ void CampaignManager::Update(Connection* connection, Statement* statement)
 string CampaignManager::AddRow(string id, string name, string ruleSystemID)
 {
 	string query = "INSERT INTO Campaign (CampaignID, CampaignName, GameMasterID, RuleSystemID) VALUES";
-	string query2 = "(" + id + ", " + name + ", " + GameMasterID + ", " + ruleSystemID + ")";
+	string query2 = "(" + id + ", " + name + ", " + user->UserID + ", " + ruleSystemID + ")";
 
 	string fullQuery = query + query2;
 
@@ -147,7 +154,7 @@ string CampaignManager::DeleteFrom(string id)
 
 string CampaignManager::GetCampaignFromGM()
 {
-	string query = "SELECT C.CampaignID, C.CampaignName\nFROM Campaign AS C\nWHERE C.GameMasterID = " + GameMasterID;
+	string query = "SELECT C.CampaignID, C.CampaignName\nFROM Campaign AS C\nWHERE C.GameMasterID = " + user->UserID;
 
 	return query;
 }

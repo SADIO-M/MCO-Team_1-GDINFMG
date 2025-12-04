@@ -12,11 +12,14 @@
 using namespace std;
 using namespace sql;
 
-// TEMP
-const string GameMasterID = "50001";
+#include "UserManager.h"
 
 class CampaignManager {
 	public:
+		UserManager* user;
+		CampaignManager();
+		CampaignManager(UserManager* user);
+
 		void Update(Connection* connection, Statement* statement);
 		string AddRow(string id, string name, string ruleSystemID);
 		string UpdateRow(string id, string columnName, string newValue);

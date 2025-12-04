@@ -12,10 +12,13 @@
 using namespace std;
 using namespace sql;
 
-#include "CampaignManager.h"
+#include "UserManager.h"
 
 class CharacterManager {
 public:
+	UserManager* user;
+	CharacterManager(UserManager* user);
+
 	void Update(Connection* connection, Statement* statement);
 	string AddRow(string id, string firstName, string lastName, string attackID, string initiative);
 	string AddRowPC(string id, string playerID);

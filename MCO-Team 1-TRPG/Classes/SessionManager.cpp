@@ -1,5 +1,10 @@
 #include "SessionManager.h"
 
+SessionManager::SessionManager(UserManager* user)
+{
+	this->user = user;
+}
+
 void SessionManager::Update(Connection* connection, Statement* statement)
 {
 	string input = "-";
