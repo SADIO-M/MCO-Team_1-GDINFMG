@@ -18,12 +18,12 @@ void UserManager::Update(Connection* connection, Statement* statement) {
 		if (input == "1") { // ADD RECORD
 			string playerId, firstName, lastName;
 
-			cout << "\n\nENTER NEW PLAYER DETAILS\n    > ENTER [ CAMPAIGN ID ] : ";
+			cout << "\n\nENTER NEW PLAYER DETAILS\n    > ENTER [ PLAYER ID ] : ";
 			cin >> playerId;
 			cin.ignore();
-			cout << "\n    > ENTER [ PLAYER NAME ] (Note: Must format as '<name>') : ";
+			cout << "\n    > ENTER [ PLAYER FIRST NAME ] (Note: Must format as '<name>') : ";
 			getline(cin, firstName);
-			cout << "\n    > ENTER [ PLAYER NAME ] (Note: Must format as '<name>') : ";
+			cout << "\n    > ENTER [ PLAYER LAST NAME ] (Note: Must format as '<name>') : ";
 			getline(cin, lastName);
 
 			try {
@@ -225,10 +225,10 @@ string UserManager::RemoveFromSession(string id, string sessionID)
 
 void UserManager::PrintInputs()
 {
-	cout << "\n|| MANAGE PLAYERS ||\n	    PLAYER MANAGEMENT\n    [1] - Add Record"
-		<< "\n    [2] - Update Record\n    [3] - View All Player Records"
-		<< "\n    [4] - Delete Record\n	    CAMPAIGN/SESSION MANAGEMENT"
+	cout << "\n|| MANAGE PLAYERS ||\n	    PLAYER MANAGEMENT\n    [1] - Add New Player"
+		<< "\n    [2] - Update Player Information\n    [3] - View All Players"
+		<< "\n    [4] - Delete Player\n	    TOOLS"
 		<< "\n    [5] - Add Player to Campaign\n    [6] - Remove Player from Campaign"
-		<< "\n    [7] - Add Player to Session\n    [8] - Remove Player from Session"
+		<< "\n    [7] - Add Player to Session\n    [8] - Remove Player from Session\n"
 		<< "\n    [0] - EXIT";
 }

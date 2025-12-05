@@ -258,9 +258,9 @@ string CharacterManager::GetBackground(string id)
 
 void CharacterManager::PrintInputs()
 {
-	cout << "\n|| MANAGE CHARACTERS AND PLAYERS ||\n	    CHARACTER MANAGEMENT\n    [1] - Add Record"
-		<< "\n    [2] - Update Record\n    [3] - View All Character Records"
-		<< "\n    [4] - Delete Record\n	    OTHER"
-		<< "\n    [5] - Get Player Background"
+	cout << "\n|| MANAGE CHARACTERS ||\n	    CHARACTER MANAGEMENT\n    [1] - Add New Character"
+		<< "\n    [2] - Update Character Information\n    [3] - View All Character Records"
+		<< "\n    [4] - Delete Character\n	    TOOLS"
+		<< "\n    [5] - Get Player Background\n"
 		<< "\n    [0] - EXIT";
 }

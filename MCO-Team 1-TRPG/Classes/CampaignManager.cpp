@@ -170,10 +170,10 @@ string CampaignManager::CheckPlayerCampaign(string id)
 
 void CampaignManager::PrintInputs()
 {
-	cout << "\n|| MANAGE CAMPAIGNS ||\n    [1] - Add Record"
-		<< "\n    [2] - Update Record\n    [3] - View All Records"
-		<< "\n    [4] - Delete Record\n    [5] - List Owned Campaigns"
-		<< "\n    [6] - List a Player's Campaigns"
+	cout << "\n|| MANAGE CAMPAIGNS ||\n	    CAMPAIGN MANAGEMENT\n    [1] - Add New Campaign"
+		<< "\n    [2] - Update Campaign\n    [3] - View All Campaigns"
+		<< "\n    [4] - Delete Campaign\n	    TOOLS\n    [5] - List Owned Campaigns"
+		<< "\n    [6] - List a Player's Campaigns\n"
 		<< "\n    [0] - EXIT";
 }
 

@@ -57,10 +57,10 @@ int main()
 
     string input = "-";
     while (input != "0"){
-        cout << "\nPress 1 to view Campaign Manager";
-        cout << "\nPress 2 to view Session Manager";
-        cout << "\nPress 3 to view Character Manager";
-        cout << "\nPress 4 to view User Manager\n\n";
+        cout << "\n[1] - Manage Campaigns";
+        cout << "\n[2] - Manage Campaign Sessions";
+        cout << "\n[3] - Manage Characters";
+        cout << "\n[4] - Manage Players\n\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
 

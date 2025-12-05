@@ -193,9 +193,9 @@ string SessionManager::ReviewSession(string sessionID)
 
 void SessionManager::PrintInputs()
 {
-	cout << "\n|| MANAGE SESSIONS ||\n    [1] - Add Record"
-		<< "\n    [2] - Update Record\n    [3] - View All Records"
-		<< "\n    [4] - Delete Record\n    [5] - View Most Recent Session From A Campaign"
+	cout << "\n|| MANAGE SESSIONS ||\n	    SESSION MANAGEMENT\n    [1] - Add New Session"
+		<< "\n    [2] - Update Session Information\n    [3] - View All Sessions"
+		<< "\n    [4] - Delete Session\n	    TOOLS\n    [5] - View Most Recent Session From A Campaign"
 		<< "\n    [6] - Review Session\n"
 		<< "\n    [0] - EXIT";
 }
