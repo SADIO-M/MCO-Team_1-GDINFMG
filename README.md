@@ -22,6 +22,12 @@ The instructions seen above are also written here:
   4.b Go to "Input"
       - Click on the text box beside Additional Dependencies and copy paste this: mysqlcppconn-static.lib;%(AdditionalDependencies)
 5. Build the solution and run.
+6. View available Game Master IDs below to input as User ID.
+
+[!!] AVAILABLE GAME MASTER IDs: 
+    - 50001 (RECOMMENDED)
+    - 50002
+    - 50003
 
 [!!] REMINDERS:
 1. The "server password" that the application requests for when you run it is the password you set when creating the local host that has the database.
