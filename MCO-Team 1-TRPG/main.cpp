@@ -11,6 +11,7 @@ using namespace std;
 #include "Classes/SessionManager.h"
 #include "Classes/CharacterManager.h"
 #include "Classes/UserManager.h"
+#include "Classes/ItemManager.h"
 
 const string server = "tcp://127.0.0.1:3306";
 const string username = "root";
@@ -52,6 +53,7 @@ int main()
     CampaignManager Campaigns(&Users);
     SessionManager Sessions(&Users);
     CharacterManager Characters(&Users);
+    ItemManager Items;
 
     statement = connection->createStatement();
 
@@ -60,7 +62,8 @@ int main()
         cout << "\n[1] - Manage Campaigns";
         cout << "\n[2] - Manage Campaign Sessions";
         cout << "\n[3] - Manage Characters";
-        cout << "\n[4] - Manage Players\n\n";
+        cout << "\n[4] - Manage Players";
+        cout << "\n[5] - Manage Items\n\n";
         cout << "[ ENTER INPUT ] : ";
         cin >> input;
 
@@ -78,6 +81,10 @@ int main()
 
         if (input == "4") {
             Users.Update(connection, statement);
+        }
+
+        if (input == "5") {
+            Items.Update(connection, statement);
         }
 
         else if (input == "0") {

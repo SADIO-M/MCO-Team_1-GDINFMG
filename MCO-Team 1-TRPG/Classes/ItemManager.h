@@ -11,3 +11,20 @@
 #include <cppconn/prepared_statement.h>
 using namespace std;
 using namespace sql;
+
+#include "UserManager.h"
+#include "CampaignManager.h"
+
+class ItemManager {
+public: 
+	void Update(Connection* connection, Statement* statement);
+	string AddRow(string id, string name, string type, string cost);
+	string UpdateRow(string id, string columnName, string newValue);
+	string ViewAll();
+	string DeleteFrom(string id);
+
+	string SeePlayerOwned(string itemID);
+
+private:
+	void PrintInputs();
+};

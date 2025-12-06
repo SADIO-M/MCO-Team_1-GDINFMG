@@ -137,6 +137,7 @@
   <ItemGroup>
     <ClCompile Include="Classes\CampaignManager.cpp" />
     <ClCompile Include="Classes\CharacterManager.cpp" />
+    <ClCompile Include="Classes\ItemManager.cpp" />
     <ClCompile Include="Classes\SessionManager.cpp" />
     <ClCompile Include="Classes\UserManager.cpp" />
     <ClCompile Include="main.cpp" />
